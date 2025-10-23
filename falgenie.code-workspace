@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "FalGenieClient",
+      "path": "packages/client"
+    },
+    {
+      "name": "FalGenieServer",
+      "path": "packages/server"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true
+    },
+    "workbench.colorTheme": "Default Dark+",
+    "terminal.integrated.cwd": "${workspaceFolder}"
+  }
+}
