@@ -21,6 +21,8 @@ app.get('/api/hello', (req: Request, res: Response) => {
    res.json({ message: 'Hello, World!' });
 });
 
+let lastResponseId: string | null = null;
+
 app.post('/api/chat', async (req: Request, res: Response) => {
    const { prompt } = req.body;
    const response = await client.responses.create({
@@ -28,6 +30,7 @@ app.post('/api/chat', async (req: Request, res: Response) => {
       input: prompt,
       temperature: 0.7,
       max_output_tokens: 100,
+      previous_response_id: lastResponseId,
    });
 
    // Each response includes token counts
@@ -43,7 +46,7 @@ app.post('/api/chat', async (req: Request, res: Response) => {
    console.log(
       `Tokens in: ${inputTokens}, out: ${outputTokens}, cost: $${totalCost.toFixed(6)}`
    );
-
+   lastResponseId = response.id;
    res.json({ message: response.output_text });
 });
 
