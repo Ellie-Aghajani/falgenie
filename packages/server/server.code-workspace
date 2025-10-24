@@ -1,22 +1,22 @@
 {
-  "folders": [
-    {
-      "name": "FalGenie Server",
-      "path": "."
-    }
-  ],
-  "settings": {
-    "files.exclude": {
-      "**/node_modules": true,
-      "**/dist": true
-    },
-    "terminal.integrated.cwd": "${workspaceFolder}",
-    "workbench.colorTheme": "Red"
-  },
-  "extensions": {
-    "recommendations": [
-      "graphql.vscode-graphql",
-      "ms-vscode.vscode-typescript-next"
-    ]
-  }
+   "folders": [
+      {
+         "name": "FalGenie Server",
+         "path": ".",
+      },
+   ],
+   "settings": {
+      "files.exclude": {
+         "**/node_modules": true,
+         "**/dist": true,
+      },
+      "terminal.integrated.cwd": "${workspaceFolder}",
+      "workbench.colorTheme": "Red",
+   },
+   "extensions": {
+      "recommendations": [
+         "graphql.vscode-graphql",
+         "ms-vscode.vscode-typescript-next",
+      ],
+   },
 }

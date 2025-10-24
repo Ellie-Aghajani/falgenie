@@ -1,24 +1,24 @@
 {
-  "folders": [
-    {
-      "name": "FalGenie Client",
-      "path": "."
-    }
-  ],
-  "settings": {
-    "files.exclude": {
-      "**/node_modules": true,
-      "**/dist": true
-    },
-    "terminal.integrated.cwd": "${workspaceFolder}",
-    "workbench.colorTheme": "Tomorrow Night Blue"
-  },
-  "extensions": {
-    "recommendations": [
-      "esbenp.prettier-vscode",
-      "dbaeumer.vscode-eslint",
-      "formulahendry.auto-rename-tag",
-      "GraphQL.vscode-graphql"
-    ]
-  }
+   "folders": [
+      {
+         "name": "FalGenie Client",
+         "path": ".",
+      },
+   ],
+   "settings": {
+      "files.exclude": {
+         "**/node_modules": true,
+         "**/dist": true,
+      },
+      "terminal.integrated.cwd": "${workspaceFolder}",
+      "workbench.colorTheme": "Tomorrow Night Blue",
+   },
+   "extensions": {
+      "recommendations": [
+         "esbenp.prettier-vscode",
+         "dbaeumer.vscode-eslint",
+         "formulahendry.auto-rename-tag",
+         "GraphQL.vscode-graphql",
+      ],
+   },
 }
