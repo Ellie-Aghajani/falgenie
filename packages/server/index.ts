@@ -22,15 +22,19 @@ app.get('/api/hello', (req: Request, res: Response) => {
 });
 
 let lastResponseId: string | null = null;
+//conversationId -> lastResponseId
+//conv1 -> 100
+//conv2 -> 200
+const conversations = new Map<string, string>();
 
 app.post('/api/chat', async (req: Request, res: Response) => {
-   const { prompt } = req.body;
+   const { prompt, conversationId } = req.body;
    const response = await client.responses.create({
       model: 'gpt-4o-mini',
       input: prompt,
       temperature: 0.7,
       max_output_tokens: 100,
-      previous_response_id: lastResponseId,
+      previous_response_id: conversations.get(conversationId),
    });
 
    // Each response includes token counts
@@ -46,7 +50,7 @@ app.post('/api/chat', async (req: Request, res: Response) => {
    console.log(
       `Tokens in: ${inputTokens}, out: ${outputTokens}, cost: $${totalCost.toFixed(6)}`
    );
-   lastResponseId = response.id;
+   conversations.set(conversationId, response.id);
    res.json({ message: response.output_text });
 });
 
