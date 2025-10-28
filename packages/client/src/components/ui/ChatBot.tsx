@@ -21,6 +21,7 @@ type Message = {
 const ChatBot = () => {
    const [messages, setMessages] = useState<Message[]>([]);
    const [isBotTyping, setIsBotTyping] = useState(false);
+   const [error, setError] = useState('');
    const lastMessageRef = useRef<HTMLDivElement | null>(null);
    const conversationId = useRef(crypto.randomUUID());
    const { register, handleSubmit, reset, formState } = useForm<FormData>({
@@ -32,15 +33,26 @@ const ChatBot = () => {
    }, [messages]);
 
    const onSubmit = async ({ prompt }: FormData) => {
-      setMessages((prev) => [...prev, { role: 'user', content: prompt }]);
-      setIsBotTyping(true);
-      reset({ prompt: '' });
-      const { data } = await axios.post<ChatResponse>('/api/chat', {
-         prompt,
-         conversationId: conversationId.current,
-      });
-      setMessages((prev) => [...prev, { role: 'bot', content: data.message }]);
-      setIsBotTyping(false);
+      try {
+         setMessages((prev) => [...prev, { role: 'user', content: prompt }]);
+         setIsBotTyping(true);
+         setError('');
+         reset({ prompt: '' });
+         const { data } = await axios.post<ChatResponse>('/api/chat', {
+            prompt,
+            conversationId: conversationId.current,
+         });
+         setMessages((prev) => [
+            ...prev,
+            { role: 'bot', content: data.message },
+         ]);
+      } catch (error) {
+         console.error(error);
+         setIsBotTyping(false);
+         setError('Failed to fetch response. Please try again.');
+      } finally {
+         setIsBotTyping(false);
+      }
    };
 
    const onKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
@@ -81,6 +93,7 @@ const ChatBot = () => {
                   <div className="w-2 h-2  bg-gray-800 rounded-full animate-pulse [animation-delay:0.4s]"></div>
                </div>
             )}
+            {error && <div className="text-red-500 text-center">{error}</div>}
          </div>
          <form
             onSubmit={handleSubmit(onSubmit)}
