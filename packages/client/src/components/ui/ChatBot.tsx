@@ -52,8 +52,8 @@ const ChatBot = () => {
                   key={index}
                   className={`px-3 py-1 rounded-xl ${
                      message.role === 'user'
-                        ? 'bg-indigo-500 text-white text-right self-end rounded-l-lg rounded-br-lg'
-                        : 'bg-gray-100 text-left self-start rounded-r-lg rounded-bl-lg'
+                        ? 'bg-indigo-500 text-white text-right self-end'
+                        : 'bg-gray-100 text-left self-start '
                   }`}
                >
                   <ReactMarkdown>{message.content}</ReactMarkdown>
@@ -70,7 +70,7 @@ const ChatBot = () => {
          <form
             onSubmit={handleSubmit(onSubmit)}
             onKeyDown={onKeyDown}
-            className="flex flex-col gap-2 items-center  border-2 p-4 rounded-lg"
+            className="flex flex-col gap-2 items-end border-2 p-4 rounded-lg"
          >
             <textarea
                {...register('prompt', {
