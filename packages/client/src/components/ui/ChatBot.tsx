@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import ReactMarkdown from 'react-markdown';
 import { Button } from './button';
 import { FaArrowUp } from 'react-icons/fa';
 import { useRef, useState } from 'react';
@@ -19,18 +20,21 @@ type Message = {
 
 const ChatBot = () => {
    const [messages, setMessages] = useState<Message[]>([]);
-
+   const [isBotTyping, setIsBotTyping] = useState(false);
    const conversationId = useRef(crypto.randomUUID());
-   const { register, handleSubmit, reset, formState } = useForm<FormData>();
-
+   const { register, handleSubmit, reset, formState } = useForm<FormData>({
+      mode: 'onChange',
+   });
    const onSubmit = async ({ prompt }: FormData) => {
       setMessages((prev) => [...prev, { role: 'user', content: prompt }]);
+      setIsBotTyping(true);
       reset();
       const { data } = await axios.post<ChatResponse>('/api/chat', {
          prompt,
          conversationId: conversationId.current,
       });
       setMessages((prev) => [...prev, { role: 'bot', content: data.message }]);
+      setIsBotTyping(false);
    };
 
    const onKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
@@ -52,9 +56,16 @@ const ChatBot = () => {
                         : 'bg-gray-100 text-left self-start rounded-r-lg rounded-bl-lg'
                   }`}
                >
-                  {message.content}
+                  <ReactMarkdown>{message.content}</ReactMarkdown>
                </p>
             ))}
+            {isBotTyping && (
+               <div className="flex self-start gap-1 px-3 py-3 bg-gray-100 rounded-xl  ">
+                  <div className="w-2 h-2  bg-gray-800 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2  bg-gray-800 rounded-full animate-pulse [animation-delay:0.2s]"></div>
+                  <div className="w-2 h-2  bg-gray-800 rounded-full animate-pulse [animation-delay:0.4s]"></div>
+               </div>
+            )}
          </div>
          <form
             onSubmit={handleSubmit(onSubmit)}
@@ -80,5 +91,4 @@ const ChatBot = () => {
       </div>
    );
 };
-
 export default ChatBot;
