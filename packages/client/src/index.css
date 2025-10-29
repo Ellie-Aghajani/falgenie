@@ -43,18 +43,24 @@
 
 :root {
    --radius: 0.625rem;
-   --background: oklch(1 0 0);
-   --foreground: oklch(0.141 0.005 285.823);
+   --background: #080106;
+   --foreground: oklch(0.98 0 0);
    --card: oklch(1 0 0);
    --card-foreground: oklch(0.141 0.005 285.823);
    --popover: oklch(1 0 0);
    --popover-foreground: oklch(0.141 0.005 285.823);
    /* Falgenie brand colors */
-   --brand-indigo: oklch(0.54 0.19 276.5); /* indigo */
    --brand-gold: oklch(0.78 0.18 83.2); /* gold accent */
-   --brand-turquoise: oklch(0.77 0.12 190); /* optional accent */
-   --primary: var(--brand-indigo);
-   --primary-foreground: oklch(0.985 0 0);
+   --brand-gold-border: oklch(0.65 0.17 80);
+   --primary: var(--brand-gold);
+   --primary-foreground: oklch(0.98 0 0);
+   --chat-bg: #100c12;
+   --chat-user-bg: #3a2230;
+   --chat-user-text: #f5e6d3;
+   --chat-bot-bg: #241826;
+   --chat-bot-text: #e8c78f;
+   --chat-border: #b5835a;
+
    --secondary: oklch(0.967 0.001 286.375);
    --secondary-foreground: oklch(0.21 0.006 285.885);
    --muted: oklch(0.967 0.001 286.375);
@@ -62,12 +68,12 @@
    --accent: oklch(0.967 0.001 286.375);
    --accent-foreground: oklch(0.21 0.006 285.885);
    --destructive: oklch(0.577 0.245 27.325);
-   --border: oklch(0.92 0.004 286.32);
+   --border: var(--brand-gold-border);
    --input: oklch(0.92 0.004 286.32);
    --ring: oklch(0.705 0.015 286.067);
-   --chart-1: oklch(0.646 0.222 41.116);
-   --chart-2: oklch(0.6 0.118 184.704);
-   --chart-3: oklch(0.398 0.07 227.392);
+   --chart-1: oklch(0.78 0.18 83.2);
+   --chart-2: oklch(0.65 0.19 276.5);
+   --chart-3: oklch(0.77 0.12 190);
    --chart-4: oklch(0.828 0.189 84.429);
    --chart-5: oklch(0.769 0.188 70.08);
    --sidebar: oklch(0.985 0 0);
@@ -81,8 +87,10 @@
 }
 
 .dark {
-   --background: oklch(0.141 0.005 285.823);
-   --foreground: oklch(0.985 0 0);
+   --background: #080106;
+   --foreground: oklch(0.98 0 0);
+   --primary: var(--brand-gold);
+   --primary-foreground: oklch(0.98 0 0);
    --card: oklch(0.21 0.006 285.885);
    --card-foreground: oklch(0.985 0 0);
    --popover: oklch(0.21 0.006 285.885);
@@ -124,4 +132,37 @@
    body {
       @apply bg-background text-foreground;
    }
+}
+
+@keyframes pulse-slow {
+   0%,
+   100% {
+      box-shadow: 0 0 20px rgba(255, 200, 100, 0.4);
+   }
+   50% {
+      box-shadow: 0 0 35px rgba(255, 220, 120, 0.7);
+   }
+}
+
+.animate-pulse-slow {
+   animation: pulse-slow 2.5s ease-in-out infinite;
+}
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+   width: 8px;
+   height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+   background: #100c12; /* matches chat background */
+}
+
+*::-webkit-scrollbar-thumb {
+   background-color: #3a2230; /* muted plum */
+   border-radius: 8px;
+   border: 2px solid #100c12; /* adds gap effect */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+   background-color: #b5835a; /* subtle gold highlight */
 }

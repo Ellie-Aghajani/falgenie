@@ -23,7 +23,7 @@ const ChatMessages = ({ messages }: Props) => {
       }
    };
    return (
-      <div className="flex flex-col gap-3 ">
+      <div className="flex flex-col gap-3  ">
          {messages.map((message, index) => (
             <div
                key={index}
@@ -31,8 +31,8 @@ const ChatMessages = ({ messages }: Props) => {
                ref={index === messages.length - 1 ? lastMessageRef : null}
                className={`px-3 py-1 rounded-xl ${
                   message.role === 'user'
-                     ? 'bg-indigo-500 text-white text-right self-end'
-                     : 'bg-gray-100 text-left self-start '
+                     ? 'bg-[var(--chat-user-bg)] text-[var(--chat-user-text)] border border-[var(--chat-border)] shadow-[0_0_15px_rgba(255,180,60,0.2)] text-right self-end'
+                     : 'bg-[var(--chat-bot-bg)] text-[var(--chat-bot-text)] border border-[var(--chat-border)] shadow-[0_0_15px_rgba(255,180,60,0.2)] text-left self-start'
                }`}
             >
                <ReactMarkdown>{message.content}</ReactMarkdown>
