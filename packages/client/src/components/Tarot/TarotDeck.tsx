@@ -37,12 +37,18 @@ export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
          />
 
          {/* 🃏 Card Fan */}
-         <div className="relative w-full flex justify-center -bottom-49 mt-20 perspective-distant">
+         <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            className="relative w-full flex flex-col justify-center perspective-distant mt-16 translate-y-66"
+            style={{ transformOrigin: 'center center' }}
+         >
             {shuffled.map((cardId, i) => {
                // Fan layout math
                const mid = shuffled.length / 2;
-               const xOffset = (i - mid) * 1; // spacing
-               const angle = (i - mid) * 6; // invert rotation so the fan flips
+               const xOffset = (i - mid) * -0.5; // spacing
+               const angle = (i - mid) * 5; // invert rotation so the fan flips
                const yOffset = -Math.abs(i - mid) * 1; // raise outer cards for an inverted arc
                const isSelected = selected.includes(cardId);
 
@@ -81,29 +87,45 @@ export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
                              shadow-[0_0_15px_rgba(255,180,60,0.25)]"
                            style={{
                               backgroundImage: "url('/tarot/backs/back.jpg')",
-                              backgroundSize: 'cover',
+                              backgroundSize: 'contain',
                               backgroundPosition: 'center',
                               backfaceVisibility: 'hidden',
                            }}
                         />
 
                         {/* Card Front */}
-                        <div
-                           className="absolute inset-0 rounded-xl border border-[#B5835A]/80 
+                        {/* <div
+                           className="absolute inset-0 rounded-r-sm border border-[#B5835A]/80 
                              shadow-[0_0_25px_rgba(255,180,60,0.4)]"
                            style={{
                               backgroundImage: `url('/tarot/major/${cardId}.jpg')`,
-                              backgroundSize: 'cover',
+                              backgroundSize: 'contain',
                               backgroundPosition: 'center',
                               backfaceVisibility: 'hidden',
                               transform: 'rotateY(180deg)',
                            }}
-                        />
+                        /> */}
                      </motion.div>
                   </motion.div>
                );
             })}
-         </div>
+         </motion.div>
+
+         {/* 🪶 Helper text under deck */}
+         <AnimatePresence>
+            {!selectionComplete && (
+               <motion.p
+                  key="prompt"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  className="text-[#FFD22F]/80 font-sans text-xl md:text-md text-center w-screen whitespace-nowrap translate-y-78"
+               >
+                  Think of your question, take a deep breath, and choose a card.
+               </motion.p>
+            )}
+         </AnimatePresence>
 
          {/* ✨ Fade out unselected cards when done */}
          <AnimatePresence>
