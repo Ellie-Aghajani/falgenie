@@ -166,3 +166,7 @@
 *::-webkit-scrollbar-thumb:hover {
    background-color: #b5835a; /* subtle gold highlight */
 }
+
+.perspective-\[1200px\] {
+   perspective: 1200px;
+}
