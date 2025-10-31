@@ -34,7 +34,7 @@ export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.2 }}
                   transition={{ duration: 0.8 }}
-                  className="absolute mt-45 sm:mt-46 md:mt-49 lg:mt-57 xl:mt-66 2xl:mt-105 flex items-center justify-center w-20 h-20 rounded-full 
+                  className="absolute mt-60 sm:mt-60 md:mt-60 lg:mt-60 xl:mt-66 2xl:mt-70 flex items-center justify-center w-20 h-20 rounded-full 
                         shadow-[0_0_60px_rgba(255,210,47,0.5)]
                        cursor-pointer hover:scale-105 transition-transform duration-500"
                   onClick={handleClick}
