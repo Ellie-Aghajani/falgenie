@@ -9,138 +9,103 @@ type TarotDeckProps = {
 };
 
 export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
-   // Shuffle once per render session
-   const shuffled = useMemo(
-      () => [...TAROT_FACES].sort(() => Math.random() - 0.5),
-      []
-   );
+   const [selected, setSelected] = useState<number | null>(null);
+   const [revealed, setRevealed] = useState(false);
 
-   const [selected, setSelected] = useState<number[]>([]);
+   // pick a random card
+   const randomCard = useMemo(() => {
+      const randomIndex = Math.floor(Math.random() * TAROT_FACES.length);
+      return TAROT_FACES[randomIndex];
+   }, []);
 
-   const selectionComplete = selected.length === 3;
-
-   const handleSelect = (index: number) => {
-      if (selectionComplete) return;
-      const cardId = shuffled[index];
-      if (selected.includes(cardId)) return;
-
-      const updated = [...selected, cardId];
-      setSelected(updated);
+   const handleClick = () => {
+      if (selected !== null) return;
+      setSelected(randomCard);
    };
 
    return (
-      <div className="relative w-full flex flex-col items-center">
-         {/* 🔮 Desk Background */}
-         <div
-            className="absolute inset-x-0 bottom-0 h-[75%] bg-cover bg-center"
-            style={{ backgroundPosition: 'center bottom' }}
-         />
-
-         {/* 🃏 Card Fan */}
-         <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            className="relative w-full flex flex-col justify-center perspective-distant mt-16 translate-y-66"
-            style={{ transformOrigin: 'center center' }}
-         >
-            {shuffled.map((cardId, i) => {
-               // Fan layout math
-               const mid = shuffled.length / 2;
-               const xOffset = (i - mid) * -0.5; // spacing
-               const angle = (i - mid) * 5; // invert rotation so the fan flips
-               const yOffset = -Math.abs(i - mid) * 1; // raise outer cards for an inverted arc
-               const isSelected = selected.includes(cardId);
-
-               return (
-                  <motion.div
-                     key={cardId}
-                     onClick={() => handleSelect(i)}
-                     className="absolute cursor-pointer"
-                     style={{
-                        transformOrigin: 'top center',
-                        transform: `translateX(${xOffset}px) translateY(${yOffset}px) rotate(${angle}deg)`,
-                        zIndex: isSelected ? 999 : i,
-                     }}
-                     whileHover={
-                        !selectionComplete ? { y: -15, scale: 1.05 } : {}
-                     }
-                     transition={{
-                        type: 'spring',
-                        stiffness: 200,
-                        damping: 12,
-                     }}
-                  >
-                     <motion.div
-                        className="relative w-[50px] h-[70px] md:w-10 md:h-[60px]"
-                        animate={{
-                           rotateY: isSelected ? 180 : 0,
-                        }}
-                        transition={{ duration: 0.8 }}
-                        style={{
-                           transformStyle: 'preserve-3d',
-                        }}
-                     >
-                        {/* Card Back */}
-                        <div
-                           className="absolute inset-0 rounded-xl border border-[#B5835A]/70 
-                             shadow-[0_0_15px_rgba(255,180,60,0.25)]"
-                           style={{
-                              backgroundImage: "url('/tarot/backs/back.jpg')",
-                              backgroundSize: 'contain',
-                              backgroundPosition: 'center',
-                              backfaceVisibility: 'hidden',
-                           }}
-                        />
-
-                        {/* Card Front */}
-                        {/* <div
-                           className="absolute inset-0 rounded-r-sm border border-[#B5835A]/80 
-                             shadow-[0_0_25px_rgba(255,180,60,0.4)]"
-                           style={{
-                              backgroundImage: `url('/tarot/major/${cardId}.jpg')`,
-                              backgroundSize: 'contain',
-                              backgroundPosition: 'center',
-                              backfaceVisibility: 'hidden',
-                              transform: 'rotateY(180deg)',
-                           }}
-                        /> */}
-                     </motion.div>
-                  </motion.div>
-               );
-            })}
-         </motion.div>
-
-         {/* 🪶 Helper text under deck */}
+      <div className="relative w-full flex flex-col items-center mt-24">
+         {/* ✨ Circle before selection */}
          <AnimatePresence>
-            {!selectionComplete && (
-               <motion.p
-                  key="prompt"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
-                  className="text-[#FFD22F]/80 font-sans text-xl md:text-md text-center w-screen whitespace-nowrap translate-y-78"
+            {selected === null && (
+               <motion.div
+                  key="circle"
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.2 }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute mt-45 sm:mt-46 md:mt-49 lg:mt-57 xl:mt-66 2xl:mt-105 flex items-center justify-center w-20 h-20 rounded-full 
+                        shadow-[0_0_60px_rgba(255,210,47,0.5)]
+                       cursor-pointer hover:scale-105 transition-transform duration-500"
+                  onClick={handleClick}
                >
-                  Think of your question, take a deep breath, and choose a card.
+                  <motion.div
+                     className="absolute inset-0 rounded-full border border-[#FFD22F]/50"
+                     animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
+                     transition={{ repeat: Infinity, duration: 2 }}
+                  />
+               </motion.div>
+            )}
+         </AnimatePresence>
+
+         {/* 🪶 Helper text */}
+         <AnimatePresence>
+            {selected === null && (
+               <motion.p
+                  key="helper"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-[#FFD22F]/80 font-sans text-base md:text-lg text-center mt-6 whitespace-nowrap translate-y-72"
+               >
+                  Think of your question, take a deep breath, and tap the
+                  circle.
                </motion.p>
             )}
          </AnimatePresence>
 
-         {/* ✨ Fade out unselected cards when done */}
+         {/* 🔮 Revealed card */}
          <AnimatePresence>
-            {selectionComplete && (
+            {selected !== null && !revealed && (
                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  key="card"
+                  initial={{ opacity: 0, scale: 0.8, rotateY: 0 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 180 }}
+                  transition={{ duration: 1, ease: 'easeOut' }}
+                  className="mt-6 w-[110px] h-[180px] md:w-[140px] md:h-[230px]
+                       rounded-xl shadow-[0_0_25px_rgba(255,180,60,0.5)] border border-[#B5835A]/70"
+                  style={{
+                     backgroundImage: `url('/tarot/major/${randomCard}.jpg')`,
+                     backgroundSize: 'cover',
+                     backgroundPosition: 'center',
+                     backfaceVisibility: 'hidden',
+                  }}
+               />
+            )}
+         </AnimatePresence>
+
+         {/* ✨ Reveal Button */}
+         <AnimatePresence>
+            {selected !== null && (
+               <motion.div
+                  key="button"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
-                  className="absolute -bottom-20 z-50"
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                  className="mt-10"
                >
                   <Button
                      variant="falgenie"
                      size="lg"
-                     onClick={() => onSelectionComplete(selected)}
+                     onClick={() => {
+                        setRevealed(true);
+                        onSelectionComplete([randomCard]);
+                     }}
+                     style={{
+                        transform: 'translateY(100px)',
+                     }}
                   >
                      Reveal My Reading ✨
                   </Button>
