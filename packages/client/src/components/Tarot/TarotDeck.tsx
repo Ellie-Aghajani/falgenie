@@ -40,7 +40,8 @@ export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
                   onClick={handleClick}
                >
                   <motion.div
-                     className="absolute inset-0 rounded-full border border-[#FFD22F]/50"
+                     className="absolute inset-0 rounded-full border border-amber-300 [background:radial-gradient(circle_at_center,rgba(255,210,47,0.45)_0%,rgba(255,210,47,0.18)_45%,rgba(255,210,47,0.08)_70%,rgba(255,210,47,0)_85%)]
+                   blur-[1px] opacity-90"
                      animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
                      transition={{ repeat: Infinity, duration: 2 }}
                   />
@@ -51,17 +52,17 @@ export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
          {/* 🪶 Helper text */}
          <AnimatePresence>
             {selected === null && (
-               <motion.p
+               <motion.div
                   key="helper"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.6 }}
-                  className="text-[#FFD22F]/80 font-sans text-base md:text-lg text-center mt-6 whitespace-nowrap translate-y-72"
+                  className="text-amber-400 font-sans text-base md:text-xl text-center mb-0 whitespace-nowrap translate-y-30"
                >
-                  Think of your question, take a deep breath, and tap the
-                  circle.
-               </motion.p>
+                  <p>✨ Focus on your question✨</p>
+                  <p>✨ Tap the circle to draw a card✨</p>
+               </motion.div>
             )}
          </AnimatePresence>
 

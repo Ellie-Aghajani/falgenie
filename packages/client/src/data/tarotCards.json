@@ -1,0 +1,112 @@
+[
+   {
+      "id": 0,
+      "name": "The Fool",
+      "upright": "New beginnings, spontaneity, and a leap of faith."
+   },
+   {
+      "id": 1,
+      "name": "The Magician",
+      "upright": "Manifestation, skill, willpower, and inspired action."
+   },
+   {
+      "id": 2,
+      "name": "The High Priestess",
+      "upright": "Intuition, inner knowledge, and mystery."
+   },
+   {
+      "id": 3,
+      "name": "The Empress",
+      "upright": "Fertility, beauty, nature, and nurturing abundance."
+   },
+   {
+      "id": 4,
+      "name": "The Emperor",
+      "upright": "Authority, structure, discipline, and leadership."
+   },
+   {
+      "id": 5,
+      "name": "The Hierophant",
+      "upright": "Tradition, wisdom, and spiritual guidance."
+   },
+   {
+      "id": 6,
+      "name": "The Lovers",
+      "upright": "Love, harmony, choices, and deep connections."
+   },
+   {
+      "id": 7,
+      "name": "The Chariot",
+      "upright": "Determination, control, and triumph through focus."
+   },
+   {
+      "id": 8,
+      "name": "Strength",
+      "upright": "Courage, compassion, and inner resilience."
+   },
+   {
+      "id": 9,
+      "name": "The Hermit",
+      "upright": "Introspection, solitude, and inner guidance."
+   },
+   {
+      "id": 10,
+      "name": "Wheel of Fortune",
+      "upright": "Cycles, destiny, and unexpected change."
+   },
+   {
+      "id": 11,
+      "name": "Justice",
+      "upright": "Fairness, truth, and accountability."
+   },
+   {
+      "id": 12,
+      "name": "The Hanged Man",
+      "upright": "Perspective, surrender, and letting go."
+   },
+   {
+      "id": 13,
+      "name": "Death",
+      "upright": "Transformation, endings, and rebirth."
+   },
+   {
+      "id": 14,
+      "name": "Temperance",
+      "upright": "Balance, harmony, and patience."
+   },
+   {
+      "id": 15,
+      "name": "The Devil",
+      "upright": "Temptation, attachment, and self-awareness."
+   },
+   {
+      "id": 16,
+      "name": "The Tower",
+      "upright": "Sudden change, upheaval, and revelation."
+   },
+   {
+      "id": 17,
+      "name": "The Star",
+      "upright": "Hope, renewal, and inspiration."
+   },
+   {
+      "id": 18,
+      "name": "The Moon",
+      "upright": "Illusion, intuition, and the subconscious."
+   },
+   {
+      "id": 19,
+      "name": "The Sun",
+      "upright": "Joy, vitality, success, and positivity."
+   },
+   {
+      "id": 20,
+      "name": "Judgement",
+      "upright": "Awakening, reflection, and life purpose."
+   },
+   {
+      "id": 21,
+      "name": "The World",
+      "upright": "Completion, fulfillment, and achievement."
+   }
+]
