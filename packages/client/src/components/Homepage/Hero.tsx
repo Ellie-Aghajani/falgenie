@@ -2,11 +2,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 import { TarotDeck } from '../Tarot/TarotDeck';
+import { useTarot } from '../Tarot/TarotContext';
 
 export const Hero = () => {
    const [showIntro, setShowIntro] = useState(true);
-   const [showDeck, setShowDeck] = useState(false);
-   const [showReading, setShowReading] = useState(false);
+   // const [showDeck, setShowDeck] = useState(false);
+   // const [showReading, setShowReading] = useState(false);
+   const { phase, startReading, setCard } = useTarot();
 
    return (
       <section
@@ -44,7 +46,7 @@ export const Hero = () => {
                      </h1>
 
                      <p className="mt-4 text-lg md:text-2xl max-w-2xl text-purple-100 leading-relaxed">
-                        Let tarot cards reveal your past, present, and future.
+                        Let tarot cards reveal your fortune.
                      </p>
 
                      <motion.div
@@ -59,7 +61,7 @@ export const Hero = () => {
                            size="lg"
                            onClick={() => {
                               setShowIntro(false);
-                              setTimeout(() => setShowDeck(true), 800); // show deck after fade
+                              setTimeout(() => startReading(), 800);
                            }}
                         >
                            Begin My Reading
@@ -71,7 +73,7 @@ export const Hero = () => {
 
             {/* Tarot Deck Phase */}
             <AnimatePresence>
-               {showDeck && !showReading && (
+               {phase === 'deck' && (
                   <motion.div
                      key="deck"
                      initial={{ opacity: 0, y: 100 }}
@@ -81,14 +83,17 @@ export const Hero = () => {
                      className="absolute bottom-10 w-full flex justify-center"
                   >
                      <TarotDeck
-                        onSelectionComplete={() => setShowReading(true)}
+                        onSelectionComplete={(cards) => {
+                           // cards[0] is your random card id from TarotDeck
+                           setCard(cards[0]); // ← moves to 'reading' and scrolls to chat
+                        }}
                      />
                   </motion.div>
                )}
             </AnimatePresence>
 
             {/* Reading Phase Placeholder */}
-            {showReading && (
+            {/* {phase === 'reading' && (
                <motion.div
                   key="reading"
                   initial={{ opacity: 0, y: 80 }}
@@ -100,7 +105,7 @@ export const Hero = () => {
                      Your Reading Appears Here ✨
                   </h2>
                </motion.div>
-            )}
+            )} */}
          </motion.div>
       </section>
    );

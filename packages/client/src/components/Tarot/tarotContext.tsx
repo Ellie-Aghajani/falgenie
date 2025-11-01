@@ -1,8 +1,8 @@
 import React, {
    createContext,
    useContext,
-   useState,
    useMemo,
+   useState,
    type ReactNode,
 } from 'react';
 import tarotCards from '@/data/tarotCards.json';
@@ -13,11 +13,14 @@ type TarotContextType = {
    phase: TarotPhase;
    selectedCard: number | null;
    selectedCardData: { id: number; name: string; upright: string } | null;
+   startReading: () => void;
+   setCard: (id: number) => void;
    selectRandomCard: () => void;
    reset: () => void;
 };
 
 const TarotContext = createContext<TarotContextType | null>(null);
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTarot = () => {
    const ctx = useContext(TarotContext);
    if (!ctx) throw new Error('useTarot must be used within TarotProvider');
@@ -28,19 +31,23 @@ export const TarotProvider = ({ children }: { children: ReactNode }) => {
    const [phase, setPhase] = useState<TarotPhase>('intro');
    const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
-   const selectRandomCard = () => {
-      const randomIndex = Math.floor(Math.random() * tarotCards.length);
-      setSelectedCard(randomIndex);
-      setPhase('reading');
+   const startReading = () => setPhase('deck'); // ← NEW (shows the deck UI)
 
-      // 🔽 Smooth scroll to chat
+   const setCard = (id: number) => {
+      // ← NEW (explicitly choose a card)
+      setSelectedCard(id);
+      setPhase('reading');
       setTimeout(() => {
          document
             .getElementById('chat-section')
             ?.scrollIntoView({ behavior: 'smooth' });
-      }, 800);
+      }, 300);
    };
 
+   const selectRandomCard = () => {
+      const randomIndex = Math.floor(Math.random() * tarotCards.length);
+      setCard(randomIndex); // reuse setCard
+   };
    const reset = () => {
       setPhase('intro');
       setSelectedCard(null);
@@ -57,6 +64,8 @@ export const TarotProvider = ({ children }: { children: ReactNode }) => {
             phase,
             selectedCard,
             selectedCardData,
+            startReading,
+            setCard,
             selectRandomCard,
             reset,
          }}
