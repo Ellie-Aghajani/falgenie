@@ -17,6 +17,19 @@ export const Hero = () => {
             backgroundImage: "url('/hero.jpg')",
          }}
       >
+         <nav
+            className="absolute top-0 left-0 right-0 z-30 h-16 px-4 md:px-8
+                flex items-center text-white bg-transparent
+                supports-[backdrop-filter]:bg-black/20 supports-[backdrop-filter]:backdrop-blur-sm
+                border-b border-white/10"
+         >
+            <a
+               href="/"
+               className="font-serif text-lg tracking-wide text-amber-400 hover:text-amber-300 transition"
+            >
+               FalGenie
+            </a>
+         </nav>
          {/* Overlay */}
          <AnimatePresence>
             {showIntro && (
