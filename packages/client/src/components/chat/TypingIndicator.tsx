@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TypingIndicator = () => {
    return (
       <div className="flex self-start gap-1 px-3 py-3 bg-[var(--chat-bot-bg)]   rounded-xl  ">
