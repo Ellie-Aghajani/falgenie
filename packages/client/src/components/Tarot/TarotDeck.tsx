@@ -58,7 +58,7 @@ export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.6 }}
-                  className="text-amber-400 font-sans text-base md:text-xl text-center mb-0 whitespace-nowrap translate-y-30"
+                  className=" macondo-regular text-[#fbeea8] font-sans text-base md:text-xl text-center mb-0 whitespace-nowrap translate-y-30 text-shadow-[#FFB900]"
                >
                   <p>✨ Focus on your question✨</p>
                   <p>✨ Tap the circle to draw a card✨</p>
@@ -107,6 +107,7 @@ export const TarotDeck = ({ onSelectionComplete }: TarotDeckProps) => {
                      style={{
                         transform: 'translateY(100px)',
                      }}
+                     className="macondo-regular"
                   >
                      Reveal My Reading ✨
                   </Button>

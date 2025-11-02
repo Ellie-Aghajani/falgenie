@@ -32,7 +32,7 @@ export default function Footer() {
          <div className="mx-auto max-w-5xl px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <a
                href="/"
-               className="font-serif grenze-brand text-2xl tracking-wide text-[#811979] hover:text-amber-500 transition"
+               className="font-serif macondo-regular text-2xl tracking-wide text-[#811979] hover:text-amber-500 transition"
                aria-label="FalGenie Home"
             >
                FalGenie
@@ -71,10 +71,10 @@ export default function Footer() {
                </a>
             </div>
 
-            <div className="text-sm text-[#811979]">
+            <div className="macondo-regular text-sm text-[#811979]">
                {visits === null
                   ? '—'
-                  : `Total Views ${visits.toLocaleString()}`}
+                  : `Total Views: ${visits.toLocaleString()}`}
             </div>
          </div>
       </footer>

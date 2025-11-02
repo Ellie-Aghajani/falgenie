@@ -177,3 +177,8 @@
    font-weight: 700; /* 100–900 available */
    font-style: normal;
 }
+.macondo-regular {
+   font-family: 'Macondo', cursive;
+   font-weight: 400;
+   font-style: normal;
+}

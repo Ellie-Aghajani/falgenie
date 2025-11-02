@@ -25,7 +25,7 @@ export const Hero = () => {
          >
             <a
                href="/"
-               className="font-serif grenze-brand text-2xl tracking-wide text-amber-400 hover:text-amber-300 transition"
+               className="font-serif macondo-regular text-2xl tracking-wide text-amber-400 hover:text-amber-300 transition"
             >
                FalGenie
             </a>
@@ -54,12 +54,12 @@ export const Hero = () => {
                      transition={{ duration: 0.8 }}
                      className="flex flex-col items-center"
                   >
-                     <h1 className="font-serif text-5xl md:text-6xl text-amber-300 drop-shadow-[0_0_15px_rgba(255,200,100,0.3)]">
+                     <h1 className="macondo-regular text-6xl md:text-6xl text-amber-300 drop-shadow-[0_0_15px_rgba(255,200,100,0.3)]">
                         Welcome to FalGenie
                      </h1>
 
-                     <p className="mt-4 text-lg md:text-2xl max-w-2xl text-purple-100 leading-relaxed">
-                        Let tarot cards reveal your fortune.
+                     <p className="macondo-regular mt-4 text-lg md:text-2xl max-w-2xl text-purple-100 leading-relaxed">
+                        Let tarot cards reveal your fortune
                      </p>
 
                      <motion.div
@@ -76,6 +76,7 @@ export const Hero = () => {
                               setShowIntro(false);
                               setTimeout(() => startReading(), 800);
                            }}
+                           className="macondo-regular"
                         >
                            Begin My Reading
                         </Button>

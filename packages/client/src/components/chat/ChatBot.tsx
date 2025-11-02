@@ -131,7 +131,7 @@ const ChatBot = () => {
                })}
                // autoFocus
                disabled={!selectedCardData}
-               className="w-full border-0 focus:outline-0 resize-none disabled:opacity-60 disabled:cursor-not-allowed"
+               className="macondo-regular w-full border-0 focus:outline-0 resize-none disabled:opacity-60 disabled:cursor-not-allowed"
                placeholder={
                   selectedCardData
                      ? `Ask me anything about your reading…`
