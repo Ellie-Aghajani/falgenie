@@ -64,7 +64,11 @@ const ChatBot = () => {
       };
       seedIntro();
    }, [phase, selectedCardData]);
-   const conversationId = useRef(crypto.randomUUID());
+   const conversationId = useRef(
+      typeof crypto !== 'undefined' && crypto.randomUUID
+         ? crypto.randomUUID()
+         : Math.random().toString(36).substring(2)
+   );
    const { register, handleSubmit, reset, formState } = useForm<FormData>({
       mode: 'onChange',
    });
