@@ -170,3 +170,10 @@
 .perspective-\[1200px\] {
    perspective: 1200px;
 }
+
+.grenze-brand {
+   font-family: 'Grenze Gotisch', serif;
+   font-optical-sizing: auto;
+   font-weight: 700; /* 100–900 available */
+   font-style: normal;
+}

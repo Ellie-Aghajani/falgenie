@@ -25,7 +25,7 @@ export const Hero = () => {
          >
             <a
                href="/"
-               className="font-serif text-lg tracking-wide text-amber-400 hover:text-amber-300 transition"
+               className="font-serif grenze-brand text-2xl tracking-wide text-amber-400 hover:text-amber-300 transition"
             >
                FalGenie
             </a>
