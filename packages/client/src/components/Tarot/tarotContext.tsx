@@ -9,7 +9,7 @@ import tarotCards from '@/data/tarotCards.json';
 
 type TarotPhase = 'intro' | 'deck' | 'reading';
 
-type TarotContextType = {
+export type TarotContextType = {
    phase: TarotPhase;
    selectedCard: number | null;
    selectedCardData: { id: number; name: string; upright: string } | null;
