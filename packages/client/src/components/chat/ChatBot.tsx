@@ -5,8 +5,8 @@ import { useRef, useState, useEffect } from 'react';
 import TypingIndicator from './TypingIndicator';
 import type { Message } from './ChatMessages';
 import ChatMessages from './ChatMessages';
-import { Button } from '../ui/button';
-import { useTarot } from '../Tarot/TarotContext';
+import { Button } from '@/components/ui/button';
+import { useTarot } from '@/components/Tarot/TarotContext';
 
 type FormData = {
    prompt: string;

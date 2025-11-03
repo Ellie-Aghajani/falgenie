@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMemo, useState } from 'react';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 
 const TAROT_FACES = Array.from({ length: 22 }, (_, i) => i);
 

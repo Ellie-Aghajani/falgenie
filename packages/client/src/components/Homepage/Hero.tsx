@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Button } from '../ui/button';
-import { TarotDeck } from '../Tarot/TarotDeck';
-import { useTarot } from '../Tarot/TarotContext';
+import { Button } from '@/components/ui/button';
+import { TarotDeck } from '@/components/Tarot/TarotDeck';
+import { useTarot } from '@/components/Tarot/TarotContext';
 
 export const Hero = () => {
    const [showIntro, setShowIntro] = useState(true);
