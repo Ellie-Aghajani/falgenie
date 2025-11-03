@@ -6,7 +6,8 @@
    "scripts": {
       "dev": "bun run index.ts",
       "format": "prettier --write .",
-      "prepare": "husky"
+      "prepare": "husky",
+      "build": "bun run --cwd packages/client build"
    },
    "workspaces": [
       "packages/*"
