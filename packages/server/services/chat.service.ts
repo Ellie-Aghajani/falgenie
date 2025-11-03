@@ -21,7 +21,7 @@ export const chatService = {
       const response = await client.responses.create({
          model: 'gpt-4o-mini',
          input: prompt,
-         temperature: 0.7,
+         temperature: 0.4,
          max_output_tokens: 300,
          previous_response_id:
             conversationRepository.getLastResponseId(conversationId),
