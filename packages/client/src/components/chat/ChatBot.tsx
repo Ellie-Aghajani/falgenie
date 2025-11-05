@@ -44,10 +44,13 @@ const ChatBot = () => {
             Rules: do NOT name or hint the specific card; avoid clichés; no lists; vary sentence lengths; end with a gentle invitation: "When you’re ready, ask a question to go deeper."
              `.trim();
 
-            const { data } = await axios.post<ChatResponse>('/api/chat', {
-               prompt,
-               conversationId: conversationId.current,
-            });
+            const { data } = await axios.post<ChatResponse>(
+               `${import.meta.env.VITE_API_BASE_URL}/api/chat`,
+               {
+                  prompt,
+                  conversationId: conversationId.current,
+               }
+            );
             setMessages([{ role: 'bot', content: data.message }]);
          } catch (e) {
             console.error(e);
