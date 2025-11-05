@@ -20,10 +20,7 @@ let lastResponseId: string | null = null;
 //conv1 -> 100
 //conv2 -> 200
 
-router.post('/api/chat', (req, res) => {
-   console.log('💬 /api/chat reached');
-   res.json({ message: 'Chat endpoint working' });
-});
+router.post('/api/chat', chatController.sendMessage);
 
 // ---- visits: file persistence ----
 const DATA_DIR = path.join(process.cwd(), 'data');
