@@ -58,7 +58,7 @@ const ChatBot = () => {
                {
                   role: 'bot',
                   content:
-                     "Let's begin. Breathe in slowly—what question is tugging at you?",
+                     "Let's begin. Breathe in slowly... Let your thoughts settle ✨. When you’re ready, ask what you wish to know.",
                },
             ]);
          } finally {
@@ -95,10 +95,13 @@ const ChatBot = () => {
          User: "${prompt}"
          `.trim();
 
-         const { data } = await axios.post<ChatResponse>('/api/chat', {
-            prompt: constrained,
-            conversationId: conversationId.current,
-         });
+         const { data } = await axios.post<ChatResponse>(
+            `${import.meta.env.VITE_API_BASE_URL}/api/chat`,
+            {
+               prompt: constrained,
+               conversationId: conversationId.current,
+            }
+         );
          setMessages((prev) => [
             ...prev,
             { role: 'bot', content: data.message },
