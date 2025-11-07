@@ -1,6 +1,6 @@
 # falgenie
 
-FalGenie is a single-page, AI-assisted tarot application. Users draw a card, receive a concise four-part reading (General, Love, Career, Health), and continue a chat that is constrained strictly to that card’s symbolism. The UI features an animated hero, a “mystic draw” interaction, and a dark, brand-consistent theme.
+**FalGenie** is a single-page, AI-assisted tarot application. Users draw a card, receive a concise four-part reading (General, Love, Career, Health), and continue a chat that is constrained strictly to that card’s symbolism. The UI features an animated hero, a “mystic draw” interaction, and a dark, brand-consistent theme.
 
 Tech stack:
 
